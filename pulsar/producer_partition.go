@@ -544,8 +544,8 @@ func (p *partitionProducer) internalSend(request *sendRequest) {
 		msg.ReplicationClusters == nil &&
 		deliverAt.UnixNano() < 0
 
-	p.log.Infof("DisableBatching=%+v, ReplicationClusters=%+v, deliver=%+v",
-		p.options.DisableBatching, msg.ReplicationClusters, deliverAt.UnixNano())
+	p.log.Infof("DisableBatching=%+v, ReplicationClusters=%+v, deliver=%+v, topic=%s",
+		p.options.DisableBatching, msg.ReplicationClusters, deliverAt.UnixNano(), p.topic)
 
 	smm := &pb.SingleMessageMetadata{
 		PayloadSize: proto.Int(len(payload)),
